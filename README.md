@@ -3,7 +3,7 @@
 
 ## Live Demo
 
-Access the live version of the project: [Netlify Link](https://cryptotradecalculator.netlify.app/)
+Access the live version of the project: [Netlify Link](https://cryptotradecalculator.netlify.app/){:target="_blank"}
 
 This project is deployed and hosted on Netlify. Click the link above to explore the live version.
 
@@ -59,19 +59,20 @@ To view the Crypto Risk-to-Reward Calculator, follow these steps:
 
 ## Project Structure
 crypto-risk-reward-calculator/
-|-- src/
-|   |-- app/
-|   |   |-- components/
-|   |   |   |-- main-page/
-|   |   |       |-- main-page.component.html
-|   |   |       |-- main-page.component.ts
-|   |   |       |-- main-page.component.css
-|   |-- assets/
-|   |   |-- public/
-|   |       |-- thumnail.JPG
-|-- angular.json
-|-- package.json
-|-- README.md
+|-- src/  
+|   |-- app/  
+|   |   |-- components/  
+|   |   |   |-- main-page/  
+|   |   |       |-- main-page.component.html  
+|   |   |       |-- main-page.component.ts  
+|   |   |       |-- main-page.component.css  
+|   |-- assets/  
+|   |   |-- public/  
+|   |       |-- thumnail.JPG  
+|-- angular.json  
+|-- package.json  
+|-- README.md  
+  
 
 **main-page.component.html**: Contains the HTML structure of the main page.
 **main-page.component.ts**: Includes the logic for calculations and theme toggling.
