@@ -1,3 +1,4 @@
+
 <div
   [class]="
     darkMode
@@ -6,35 +7,44 @@
   "
   class="transition duration-500"
 >
-  <div class="max-w-auto mx-auto p-10" style="width: 80%">
+
+  <div class="max-w-auto mx-auto md:mx-16 p-10  " >
     <!-- Header -->
-    <div class="flex justify-between items-center mb-8">
-      <h1 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
-        Crypto Risk-to-Reward Calculator
-      </h1>
-      <label class="theme-switch small">
-        <input type="checkbox" class="theme-switch__checkbox" (change)="toggleTheme()" [checked]="darkMode">
-        <div class="theme-switch__container">
-          <div class="theme-switch__clouds"></div>
-          <div class="theme-switch__stars-container"></div>
-          <div class="theme-switch__circle-container">
-            <div class="theme-switch__sun-moon-container">
-              <div class="theme-switch__moon">
-                <div class="theme-switch__spot"></div>
-                <div class="theme-switch__spot"></div>
-                <div class="theme-switch__spot"></div>
+    <div class="flex justify-between items-center mb-8  flex-col-reverse md:flex-row ">
+      <div>
+        <h1 class="text-4xl font-extrabold md:text-left text-center bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+          Crypto Risk-to-Reward Calculator
+        </h1>
+      </div>
+
+      <div>
+        <label class="theme-switch small mobile:mb-4">
+          <input type="checkbox" class="theme-switch__checkbox" (change)="toggleTheme()" [checked]="darkMode">
+          <div class="theme-switch__container">
+            <div class="theme-switch__clouds"></div>
+            <div class="theme-switch__stars-container"></div>
+            <div class="theme-switch__circle-container">
+              <div class="theme-switch__sun-moon-container">
+                <div class="theme-switch__moon">
+                  <div class="theme-switch__spot"></div>
+                  <div class="theme-switch__spot"></div>
+                  <div class="theme-switch__spot"></div>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </label>
+        </label>
+      </div>
+     
+ 
+      
     </div>
 
     <!-- Content Section -->
     <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
       <!-- Input Section -->
       <div [class]="darkMode ? 'shadow-2xl rounded-xl p-6 bg-gray-800' : 'shadow-2xl rounded-xl p-6 bg-white'">
-        <h2 [class]="darkMode ? 'text-xl font-bold mb-6 text-green-400' : 'text-xl font-bold mb-6 text-blue-500'">
+        <h2 [class]="darkMode ? 'text-xl font-bold mb-6 text-green-400' : 'text-xl font-bold mb-6 text-green-400'">
           Inputs
         </h2>
         <div class="space-y-4">
@@ -53,7 +63,7 @@
           </div>
         </div>
         <button
-          (click)="calculateResults()"
+          (click)="calculateResults(); scrollToResults()"
           class="mt-6 w-full bg-gradient-to-r from-green-900 to-green-700 text-white font-bold py-4 rounded-lg hover:opacity-90 transition text-lg shadow-xl"
         >
           Calculate
@@ -61,14 +71,15 @@
       </div>
 
       <!-- Results Section -->
-      <div class="grid grid-cols-2 gap-6">
+      <div class="grid  gap-6 grid-cols-1 md:grid-cols-2 " id="results-section">
         <div
           *ngFor="let result of resultFields"
-          [class]="darkMode ? 'shadow-lg rounded-xl p-6 bg-gray-800 shadow-lg' : 'shadow-lg rounded-xl p-6 bg-white'"
+          [class]="darkMode ? 'shadow-lg rounded-xl p-6 bg-gray-800 mobile:bg-gray-700' : 'shadow-lg rounded-xl p-6 bg-white mobile:bg-gray-200'"
+          [style]="darkMode ? 'color: #d1d5db;' : ''"
         >
           <h3 class="text-sm font-bold" [class]="result.color">{{ result.label }}</h3>
-          <p class="text-xs mt-2 text-gray-500">{{ result.caption }}</p>
-          <p class="text-4xl font-extrabold mt-4">{{ result.value }}</p>
+          <p class="text-xs mt-2 text-gray-500" [class]="darkMode ? 'text-gray-400' : ''">{{ result.caption }}</p>
+          <p class="text-4xl font-extrabold mt-4" [style.fontSize]="isMobile() ? '2rem' : ''">{{ result.value }}</p>
         </div>
       </div>
     </div>
