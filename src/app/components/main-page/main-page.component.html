@@ -1,0 +1,76 @@
+<div
+  [class]="
+    darkMode
+      ? 'min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white'
+      : 'min-h-screen bg-gradient-to-br from-white to-gray-100 text-gray-800'
+  "
+  class="transition duration-500"
+>
+  <div class="max-w-auto mx-auto p-10" style="width: 80%">
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-8">
+      <h1 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-400 to-blue-500">
+        Crypto Risk-to-Reward Calculator
+      </h1>
+      <label class="theme-switch small">
+        <input type="checkbox" class="theme-switch__checkbox" (change)="toggleTheme()" [checked]="darkMode">
+        <div class="theme-switch__container">
+          <div class="theme-switch__clouds"></div>
+          <div class="theme-switch__stars-container"></div>
+          <div class="theme-switch__circle-container">
+            <div class="theme-switch__sun-moon-container">
+              <div class="theme-switch__moon">
+                <div class="theme-switch__spot"></div>
+                <div class="theme-switch__spot"></div>
+                <div class="theme-switch__spot"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </label>
+    </div>
+
+    <!-- Content Section -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <!-- Input Section -->
+      <div [class]="darkMode ? 'shadow-2xl rounded-xl p-6 bg-gray-800' : 'shadow-2xl rounded-xl p-6 bg-white'">
+        <h2 [class]="darkMode ? 'text-xl font-bold mb-6 text-green-400' : 'text-xl font-bold mb-6 text-blue-500'">
+          Inputs
+        </h2>
+        <div class="space-y-4">
+          <!-- Input Fields -->
+          <div *ngFor="let field of inputFields">
+            <label class="block text-sm mb-1">{{ field.label }}</label>
+            <input
+              type="number"
+              [(ngModel)]="field.value"
+              class="w-full p-3 rounded-lg"
+              [class]="darkMode
+                ? 'bg-gray-700 text-white focus:outline-none focus:ring-2 focus:ring-green-400'
+                : 'bg-gray-100 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-400'"
+              [placeholder]="'Enter ' + field.label.toLowerCase()"
+            />
+          </div>
+        </div>
+        <button
+          (click)="calculateResults()"
+          class="mt-6 w-full bg-gradient-to-r from-green-900 to-green-700 text-white font-bold py-4 rounded-lg hover:opacity-90 transition text-lg shadow-xl"
+        >
+          Calculate
+        </button>
+      </div>
+
+      <!-- Results Section -->
+      <div class="grid grid-cols-2 gap-6">
+        <div
+          *ngFor="let result of resultFields"
+          [class]="darkMode ? 'shadow-lg rounded-xl p-6 bg-gray-800 shadow-lg' : 'shadow-lg rounded-xl p-6 bg-white'"
+        >
+          <h3 class="text-sm font-bold" [class]="result.color">{{ result.label }}</h3>
+          <p class="text-xs mt-2 text-gray-500">{{ result.caption }}</p>
+          <p class="text-4xl font-extrabold mt-4">{{ result.value }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
